@@ -45,14 +45,15 @@ class _MyHomePageState extends State<MyHomePage> {
     Widget networkSvg = SvgPicture.network(
       'https://static.xx.fbcdn.net/rsrc.php/y1/r/4lCu2zih0ca.svg',
       semanticsLabel: 'Facebook!',
-      width: AppSize.getWidth(context, 120),
-      height: AppSize.getHeight(context, 120),
+      width: AppSize.getWidth(context, 280),
+      height: AppSize.getHeight(context, 280),
+
       placeholderBuilder: (BuildContext context) => Container(
-          padding: EdgeInsets.all(AppSize.getWidth(context, 16)),
+          padding: EdgeInsets.only(left:AppSize.getWidth(context, 16),bottom: 0),
           child: const CircularProgressIndicator()),
     );
     return Scaffold(
-      backgroundColor: const Color(0xffeeeded),
+      backgroundColor:  Colors.white,
       body: Column(mainAxisAlignment: MainAxisAlignment.center, children: [
         Row(
           mainAxisAlignment: MainAxisAlignment.center,
@@ -63,23 +64,25 @@ class _MyHomePageState extends State<MyHomePage> {
                 networkSvg,
                 Padding(
                   padding: EdgeInsets.only(
-                    left: AppSize.getWidth(context, 8),
+                    top: 0,
+                    left: AppSize.getWidth(context, 16),
                     bottom: AppSize.getHeight(context, 16),
                   ),
                   child: Text(
-                    'Recent Logins',
+                    'Connect with friends and the world',
                     style:
                         TextStyle(fontSize: AppSize.getFontSize(context, 16)),
                   ),
                 ),
                 Padding(
                   padding: EdgeInsets.only(
-                    left: AppSize.getWidth(context, 8),
+                    top: 0,
+                    left: AppSize.getWidth(context, 16),
                     bottom: AppSize.getHeight(context, 16),
                   ),
                   child: Text(
-                    'Click your picture or add an account',
-                    style: TextStyle(fontSize: AppSize.getFontSize(context, 8)),
+                    'around you on Facebook.',
+                    style: TextStyle(fontSize: AppSize.getFontSize(context, 16)),
                   ),
                 ),
                 Row(
@@ -88,7 +91,7 @@ class _MyHomePageState extends State<MyHomePage> {
               ],
             ),
             SizedBox(
-              width: AppSize.getWidth(context, 16),
+              width: AppSize.getWidth(context, 100),
             ),
             Container(
               decoration: BoxDecoration(
@@ -99,14 +102,14 @@ class _MyHomePageState extends State<MyHomePage> {
                     color: Colors.grey.withOpacity(0.5),
                     spreadRadius: 5,
                     blurRadius: 7,
-                    offset: Offset(0, 3), // changes position of shadow
+                    offset: const Offset(0, 3), // changes position of shadow
                   ),
                 ],
               ),
               child: Padding(
                 padding: EdgeInsets.symmetric(
                     horizontal: AppSize.getWidth(context, 8),
-                    vertical: AppSize.getHeight(context, 32)),
+                    vertical: AppSize.getHeight(context, 64)),
                 child: Column(
                   children: [
                     SizedBox(
@@ -120,69 +123,32 @@ class _MyHomePageState extends State<MyHomePage> {
                         },
                         controller: emailCon,
                         focusNode: emailNode,
-                        decoration: InputDecoration(
-                            border: OutlineInputBorder(
-                              borderSide: const BorderSide(
-                                color: CupertinoColors.lightBackgroundGray,
-                              ),
-                              borderRadius: BorderRadius.circular(8),
-                            ),
-                            focusedBorder: OutlineInputBorder(
-                              borderRadius: BorderRadius.circular(8),
-                              borderSide:
-                                  const BorderSide(color: Colors.blueAccent),
-                            ),
-                            floatingLabelStyle:
-                                const TextStyle(color: Colors.blueAccent),
-                            labelText: "Email",
-                            fillColor: Colors.white,
-                            filled: true),
+                        decoration: getInputDec(context),
                         onEditingComplete: () {
                           FocusScope.of(context).requestFocus(FocusNode());
                         },
                       ),
                     ),
-                    SizedBox(
-                      height: AppSize.getHeight(
-                        context,
-                        24,
-                      ),
-                    ),
+                    SizedBox(height: AppSize.getHeight(context, 32)),
                     SizedBox(
                       width: AppSize.getWidth(context, 240),
                       child: TextFormField(
                         validator: (value) {
                           if (value == null) {
-                            return "Please confirm your email";
+                            return "Please enter your password";
                           }
                           return null;
                         },
                         controller: passCon,
                         focusNode: passNode,
-                        decoration: InputDecoration(
-                            border: OutlineInputBorder(
-                              borderSide: const BorderSide(
-                                color: CupertinoColors.lightBackgroundGray,
-                              ),
-                              borderRadius: BorderRadius.circular(8),
-                            ),
-                            focusedBorder: OutlineInputBorder(
-                              borderRadius: BorderRadius.circular(8),
-                              borderSide:
-                                  const BorderSide(color: Colors.blueAccent),
-                            ),
-                            floatingLabelStyle:
-                                const TextStyle(color: Colors.blueAccent),
-                            labelText: "Password",
-                            fillColor: Colors.white,
-                            filled: true),
+                        decoration: getInputDec(context),
                         onEditingComplete: () {
                           FocusScope.of(context).requestFocus(FocusNode());
                         },
                       ),
                     ),
                     SizedBox(
-                      height: AppSize.getHeight(context, 24),
+                      height: AppSize.getHeight(context,40),
                     ),
                     SizedBox(
                       width: AppSize.getWidth(context, 240),
@@ -190,30 +156,31 @@ class _MyHomePageState extends State<MyHomePage> {
                       child: FloatingActionButton(
                         onPressed: () {},
                         shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(8)),
+                            borderRadius: BorderRadius.circular(16)),
                         backgroundColor: Colors.blueAccent,
                         child: Text(
                           'Log In',
                           style: TextStyle(
-                              fontSize: AppSize.getFontSize(context, 16),
-                              color: Colors.white),
+                              fontSize: AppSize.getFontSize(context, 14),
+                              color: Colors.white,
+                          fontWeight: FontWeight.w700),
                         ),
                       ),
                     ),
-                    SizedBox(height: AppSize.getHeight(context, 16)),
+                    SizedBox(height: AppSize.getHeight(context, 40)),
                     Text(
                       'Forgot password?',
                       style: TextStyle(
-                          fontSize: AppSize.getFontSize(context, 12),
+                          fontSize: AppSize.getFontSize(context, 10),
                           color: Colors.blueAccent),
                     ),
                     SizedBox(height: AppSize.getHeight(context, 16)),
                     SizedBox(
+                      width: AppSize.getWidth(context, 240),
                       child: const Divider(
                         color: Colors.grey,
                         height: 10,
                       ),
-                      width: AppSize.getWidth(context, 240),
                     ),
                     SizedBox(height: AppSize.getHeight(context, 48)),
                     SizedBox(
@@ -227,8 +194,8 @@ class _MyHomePageState extends State<MyHomePage> {
                         child: Text(
                           'Create new account',
                           style: TextStyle(
-                              fontSize: AppSize.getFontSize(context, 16),
-                              color: Colors.white),
+                              fontSize: AppSize.getFontSize(context, 12),
+                              color: Colors.white,fontWeight: FontWeight.bold),
                         ),
                       ),
                     ),
