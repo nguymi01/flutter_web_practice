@@ -42,7 +42,7 @@ class _MyHomePageState extends State<MyHomePage> {
 
   @override
   Widget build(BuildContext context) {
-    bool isScreenWide = MediaQuery.sizeOf(context).width >= 825;
+    bool isScreenWide = MediaQuery.sizeOf(context).width > 825;
     Widget networkSvg = SvgPicture.network(
       'https://static.xx.fbcdn.net/rsrc.php/y1/r/4lCu2zih0ca.svg',
       semanticsLabel: 'Facebook!',
